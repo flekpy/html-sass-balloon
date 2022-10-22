@@ -1,0 +1,44 @@
+// миксины дают возможность переиспользовать код, можно добавить аргументы
+@mixin style-link($color)
+  display: inline-block
+  text-transform: uppercase
+  text-decoration: none
+  color: $color
+
+
+// шаблоны
+// %button-style
+//   @include style-link($color-gray)
+//   padding: 1.5rem 4rem
+//   background: $color-white
+//   border-radius: 5rem
+//   transition: all .3s
+//   position: relative
+//   font-size: 2rem
+
+@mixin clearfix
+  &::after
+    content: ""
+    display: table
+    clear: both
+
+@mixin phone
+  @media (max-width: 600px)
+    @content
+
+@mixin respond($breakpoint)
+  @if $breakpoint == phone
+    @media only screen and (max-width: 600px)
+      @content
+
+  @if $breakpoint == tab-port
+    @media only screen and (max-width: 900px)
+      @content
+    
+  @if $breakpoint == tab-land
+    @media only screen and (max-width: 1240px)
+      @content
+    
+  @if $breakpoint == big-screen
+    @media only screen and (min-width: 1800px)
+      @content
